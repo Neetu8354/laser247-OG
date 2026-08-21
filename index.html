@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Laser247</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Laser247 - Static UI preview (no scripts, no crashes).">
+<link rel="icon" type="image/png" href="assets/laser247.press.png">
+<style>
+  :root{
+    --bg:#ededed;
+    --dark:#0b1220;
+    --navy:#101a3d;
+    --navy2:#182456;
+    --red:#e2261c;
+    --orange:#ff7a00;
+    --green:#1abc9c;
+    --text:#333;
+    --white:#fff;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    padding-bottom:64px; /* space for mobile bottom nav */
+  }
+  a{text-decoration:none;color:inherit;cursor:default;}
+  img{max-width:100%;display:block;}
+  .container{max-width:1200px;margin:0 auto;padding:0 10px;}
+
+  /* ---------- Header ---------- */
+  .topbar{
+    background:linear-gradient(180deg,var(--navy2),var(--navy));
+    padding:8px 0;
+  }
+  .topbar-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;flex-wrap:wrap;
+  }
+  .logo img{height:38px;width:auto;}
+  .topbar-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .field{
+    background:#fff;border:none;border-radius:3px;
+    padding:6px 10px;font-size:12px;width:120px;
+  }
+  .btn{
+    display:inline-block;border:none;border-radius:3px;
+    padding:7px 14px;font-size:12px;font-weight:600;
+    color:#fff;white-space:nowrap;
+  }
+  .btn-login{background:#c81e2c;}
+  .btn-demo{background:#c81e2c;}
+  .btn-signup{background:#1abc9c;}
+  .btn-forgot{color:#fff;font-size:12px;}
+
+  /* Mobile top-bar action set (hidden by default, shown on small screens) */
+  .topbar-right-mobile{display:none;align-items:center;gap:6px;}
+  .btn-mobile{
+    display:inline-flex;align-items:center;justify-content:center;gap:4px;
+    border:none;border-radius:4px;padding:8px 12px;
+    font-size:13px;font-weight:600;color:#fff;white-space:nowrap;
+  }
+  .btn-mobile-demo{background:#c81e2c;}
+  .btn-mobile-login{background:#182035;}
+  .btn-mobile-login .icon{font-size:12px;}
+  .btn-mobile-signup{background:#1abc9c;}
+
+  /* ---------- Main Nav ---------- */
+  .mainnav{
+    background:#0d1330;
+    overflow-x:auto;
+    white-space:nowrap;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+  }
+  .mainnav ul{list-style:none;margin:0;padding:0;display:inline-flex;}
+  .mainnav li{display:inline-block;}
+  .mainnav a{
+    display:block;padding:10px 14px;color:#dfe3ee;
+    font-size:13px;font-weight:600;text-transform:capitalize;
+  }
+  .mainnav a.active,.mainnav a:hover{background:var(--red);color:#fff;}
+
+  /* ---------- News ticker ---------- */
+  .newsbar{
+    background:#fff;border-bottom:1px solid #ddd;
+    padding:6px 0;font-size:13px;color:#444;
+    display:flex;align-items:center;gap:8px;overflow:hidden;
+  }
+  .newsbar .mic{color:var(--red);font-weight:bold;flex-shrink:0;}
+  .newsbar .news-scroll{
+    flex:1;overflow:hidden;white-space:nowrap;
+  }
+  .newsbar .news-scroll span{
+    display:inline-block;
+    animation:scroll-left 20s linear infinite;
+  }
+  @keyframes scroll-left{
+    0%{transform:translateX(100%);}
+    100%{transform:translateX(-100%);}
+  }
+
+  /* ---------- Sections ---------- */
+  section{padding:10px 0;}
+  .row-flex{display:flex;gap:10px;flex-wrap:wrap;}
+  .banner-hero{width:100%;border-radius:4px;overflow:hidden;}
+  .banner-hero img{width:100%;height:auto;}
+
+  .two-col{display:flex;gap:10px;margin-top:10px;}
+  .two-col > div{flex:1 1 0;min-width:0;}
+  .panel{background:#0d1330;border-radius:4px;overflow:hidden;position:relative;}
+  .panel img{width:100%;display:block;}
+  .panel .cap{
+    background:#000;color:#fff;font-size:13px;padding:6px 10px;
+  }
+  .sports-live-wrap{display:flex;gap:0;}
+  .sports-live-wrap .sports-img{flex:2;position:relative;}
+  .live-list{
+    flex:1;background:#0d1330;color:#eee;font-size:12px;
+    max-width:150px;overflow-y:auto;
+  }
+  .live-list .live-head{
+    background:var(--red);color:#fff;padding:6px;text-align:center;
+    font-weight:700;letter-spacing:1px;
+  }
+  .live-list ul{list-style:none;margin:0;padding:0;}
+  .live-list li{
+    display:flex;justify-content:space-between;
+    padding:6px 8px;border-bottom:1px solid #1e2650;
+  }
+  .live-list li span.count{
+    background:#1a2358;padding:0 6px;border-radius:3px;
+  }
+
+  .section-title{
+    text-transform:uppercase;background:#c81e2c;color:#fff;
+    padding:8px 10px;font-size:14px;margin:14px 0 8px;border-radius:2px;
+  }
+
+  .game-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
+  }
+  .game-grid.small-8{grid-template-columns:repeat(4,1fr);}
+  .game-card{
+    background:#0d1330;border-radius:6px;overflow:hidden;
+    text-align:center;
+  }
+  .game-card img{width:100%;aspect-ratio:1/1;object-fit:cover;}
+  .game-card h2{
+    font-size:12px;color:#fff;margin:0;padding:6px 4px;
+    text-transform:capitalize;font-weight:600;
+  }
+  .provider-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
+  }
+  .provider-card{
+    background:#0d1330;border-radius:6px;overflow:hidden;text-align:center;
+  }
+  .provider-card img{width:100%;aspect-ratio:16/10;object-fit:cover;}
+  .provider-card .cap{
+    padding:6px;color:#fff;font-size:12px;text-transform:capitalize;
+  }
+  .provider-card .play-now{
+    display:inline-block;margin-top:2px;font-size:11px;
+    background:var(--red);color:#fff;padding:2px 8px;border-radius:10px;
+    animation:pulse-glow 2s ease-in-out infinite;
+    box-shadow:0 0 8px rgba(226,38,28,0.6);
+  }
+  @keyframes pulse-glow{
+    0%, 100%{
+      transform:scale(1);
+      box-shadow:0 0 8px rgba(226,38,28,0.6);
+    }
+    50%{
+      transform:scale(1.05);
+      box-shadow:0 0 16px rgba(226,38,28,0.9), 0 0 24px rgba(226,38,28,0.5);
+    }
+  }
+  .empty-note{color:#888;font-size:13px;padding:6px 0;}
+
+  /* ---------- Footer ---------- */
+  footer{background:#fff;border-top:1px solid #ddd;margin-top:20px;padding:20px 0;}
+  .footer-license{
+    display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+    border:1px solid #ddd;padding:14px;border-radius:4px;
+  }
+  .footer-license img.gc{height:50px;}
+  .footer-license img.lice{max-height:44px;}
+  .footer-license p{font-size:11px;color:#666;margin:0;flex:1;min-width:220px;}
+  .footer-note{text-align:center;font-size:12px;color:#666;margin:14px 0;}
+  .footer-links{
+    list-style:none;display:flex;justify-content:center;gap:18px;
+    flex-wrap:wrap;padding:0;margin:0;font-size:12px;text-transform:capitalize;
+  }
+  .footer-links a{color:#333;}
+
+  /* ---------- Mobile bottom nav ---------- */
+  .mobile-footer-menu{
+    display:none;position:fixed;left:0;right:0;bottom:0;
+    background:#0d1330;z-index:50;
+    box-shadow:0 -2px 6px rgba(0,0,0,.3);
+  }
+  .mobile-footer-menu ul{
+    list-style:none;margin:0;padding:0;display:flex;
+  }
+  .mobile-footer-menu li{flex:1;text-align:center;}
+  .mobile-footer-menu a{
+    display:flex;flex-direction:column;align-items:center;gap:2px;
+    color:#c6cbe0;font-size:10px;padding:8px 2px;
+  }
+  .mobile-footer-menu img{height:20px;width:20px;opacity:0.8;}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:991px){
+    .two-col{flex-direction:column;}
+    .sports-live-wrap{flex-direction:column;}
+    .live-list{max-width:100%;}
+    .game-grid, .provider-grid{grid-template-columns:repeat(2,1fr);}
+    body{padding-bottom:60px;}
+    .mobile-footer-menu{display:block;}
+    .field{width:100px;}
+  }
+  @media (max-width:576px){
+    .topbar{padding:6px 0;}
+    .topbar-inner{flex-wrap:nowrap;gap:4px;}
+    .container{padding:0 6px;}
+    .logo{flex-shrink:0;}
+    .logo img{height:22px;}
+    .topbar-right{display:none;}
+    .topbar-right-mobile{display:flex;flex-shrink:0;gap:3px;}
+    .btn-mobile{padding:5px 6px;font-size:10px;gap:2px;}
+    .btn-mobile-login .icon{font-size:9px;}
+    .game-grid, .provider-grid{grid-template-columns:repeat(2,1fr);}
+    .section-title{font-size:13px;}
+  }
+  @media (max-width:340px){
+    .logo img{height:18px;}
+    .btn-mobile{padding:4px 5px;font-size:9px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Top Bar ===== -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="logo" href="#" tabindex="-1" aria-disabled="true">
+      <img src="assets/laser247.press.png" alt="Laser247 logo">
+    </a>
+    <div class="topbar-right">
+      <input class="field" type="text" placeholder="Username" disabled>
+      <input class="field" type="password" placeholder="Password" disabled>
+      <a class="btn btn-login" href="#" tabindex="-1" aria-disabled="true">Login</a>
+      <a class="btn btn-login" href="#" tabindex="-1" aria-disabled="true">Login With Demo ID</a>
+      <a class="btn btn-signup" href="#" tabindex="-1" aria-disabled="true">Signup</a>
+      <a class="btn-forgot" href="#" tabindex="-1" aria-disabled="true">Forgot?</a>
+    </div>
+    <div class="topbar-right-mobile">
+      <a class="btn-mobile btn-mobile-demo" href="#" tabindex="-1" aria-disabled="true">Demo</a>
+      <a class="btn-mobile btn-mobile-login" href="#" tabindex="-1" aria-disabled="true"><span class="icon">&#128100;</span> Login</a>
+      <a class="btn-mobile btn-mobile-signup" href="#" tabindex="-1" aria-disabled="true">Signup</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Main Navigation ===== -->
+<nav class="mainnav" aria-label="Primary">
+  <ul>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Home</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">In-Play</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Cricket</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Football</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Tennis</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Casino</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Sports Book</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Horse Racing</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Greyhound Racing</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Binary</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Kabaddi</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Politics</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Basketball</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Baseball</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Table Tennis</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Volleyball</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Ice Hockey</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Rugby</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Mixed Martial Arts</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Darts</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Futsal</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Other</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true">Genius</a></li>
+  </ul>
+</nav>
+
+<!-- ===== News ticker ===== -->
+<div class="newsbar container">
+  <span class="mic">&#127908;</span>
+  <div class="news-scroll"><span>Breaking News: Welcome to Laser247 - Your Premier Sports Betting Platform | Live Cricket, Football, Tennis & More | Exclusive Casino Games Available Now | Sign Up Today for Amazing Bonuses!</span></div>
+</div>
+
+<main class="container">
+
+  <!-- ===== Popular Events banner ===== -->
+  <section>
+    <div class="banner-hero">
+      <img src="assets/slider1.gif" alt="Popular Events banner">
+    </div>
+  </section>
+
+  <!-- ===== Sports / Live counts / Sports Book ===== -->
+  <section>
+    <div class="two-col">
+      <div class="sports-live-wrap" style="flex:1;display:flex;">
+        <div class="panel sports-img" style="flex:2;">
+          <img src="assets/banner-sport1.png" alt="Sports">
+          <div class="cap">Sports</div>
+        </div>
+        <div class="live-list">
+          <div class="live-head">&#128225; LIVE</div>
+          <ul>
+            <li>Cricket <span class="count">21</span></li>
+            <li>Football <span class="count">52</span></li>
+            <li>Tennis <span class="count">16</span></li>
+            <li>Casino <span class="count">0</span></li>
+            <li>Sports Book <span class="count">0</span></li>
+            <li>Horse Racing <span class="count">0</span></li>
+            <li>Greyhound Racing <span class="count">0</span></li>
+            <li>Binary <span class="count">1</span></li>
+            <li>Kabaddi <span class="count">0</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="panel" style="flex:1;">
+        <img src="assets/sportbook.png" alt="Sports Book">
+        <div class="cap">Sports Book</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Popular casino games ===== -->
+  <section>
+    <div class="game-grid small-8">
+      <div class="game-card"><img src="assets/17741823555860894.gif" alt="Ezugi Gaming"><h2>Ezugi Gaming</h2></div>
+      <div class="game-card"><img src="assets/17721098435339176.gif" alt="Lightning"><h2>Lightning</h2></div>
+      <div class="game-card"><img src="assets/17814456661363480.gif" alt="Marble Run"><h2>Marble Run</h2></div>
+      <div class="game-card"><img src="assets/17721098612002083.gif" alt="Sexy"><h2>Sexy</h2></div>
+      <div class="game-card"><img src="assets/17721097044064323.gif" alt="Aviator"><h2>Aviator</h2></div>
+      <div class="game-card"><img src="assets/17721097112033203.gif" alt="Mines"><h2>Mines</h2></div>
+      <div class="game-card"><img src="assets/17753848857099293.gif" alt="Bikini Games"><h2>Bikini Games</h2></div>
+      <div class="game-card"><img src="assets/17721097199816647.gif" alt="Chicken &amp; Color"><h2>Chicken &amp; Color</h2></div>
+    </div>
+  </section>
+
+  <!-- ===== New launch ===== -->
+  <section>
+    <h2 class="section-title">New Launch</h2>
+    <div class="game-grid">
+      <div class="game-card"><img src="assets/17803163841837172.png" alt="All"><h2>All</h2></div>
+      <div class="game-card"><img src="assets/17855875079509142.png" alt="Candy Bonanza"><h2>Candy Bonanza</h2></div>
+      <div class="game-card"><img src="assets/17869858282084912.png" alt="Bomb Defuse"><h2>Bomb Defuse</h2></div>
+      <div class="game-card"><img src="assets/17769276025117105.png" alt="Wicket Blast"><h2>Wicket Blast</h2></div>
+      <div class="game-card"><img src="assets/17817806325076148.png" alt="Matka"><h2>Matka</h2></div>
+      <div class="game-card"><img src="assets/17847185961352404.png" alt="Football X"><h2>Football X</h2></div>
+      <div class="game-card"><img src="assets/17867119742876048.png" alt="Moles"><h2>Moles</h2></div>
+      <div class="game-card"><img src="assets/17728789379278739.png" alt="Instant Rummy"><h2>Instant Rummy</h2></div>
+      <div class="game-card"><img src="assets/17627664965955504.webp" alt="Jhandi Munda"><h2>Jhandi Munda</h2></div>
+      <div class="game-card"><img src="assets/17765061237955472.png" alt="Blackjack"><h2>Blackjack</h2></div>
+      <div class="game-card"><img src="assets/17650464746431448.png" alt="Deal Or No Deal"><h2>Deal Or No Deal</h2></div>
+      <div class="game-card"><img src="assets/17828557607525181.png" alt="Golden Kick"><h2>Golden Kick</h2></div>
+    </div>
+  </section>
+
+  <!-- ===== Recent games ===== -->
+  <section>
+    <h2 class="section-title">Recent Games</h2>
+    <p class="empty-note">No recent games yet.</p>
+  </section>
+
+  <!-- ===== Our provider ===== -->
+  <section>
+    <h2 class="section-title">Our Provider</h2>
+    <div class="provider-grid">
+      <div class="provider-card"><img src="assets/17627662894125262.webp" alt="Mac88 Virtuals"><div class="cap">Mac88 Virtuals</div><a href="#" tabindex="-1" aria-disabled="true" class="play-now">Play Now</a></div>
+      <div class="provider-card"><img src="assets/17627662967949691.webp" alt="Mac88 Live"><div class="cap">Mac88 Live</div><a href="#" tabindex="-1" aria-disabled="true" class="play-now">Play Now</a></div>
+      <div class="provider-card"><img src="assets/17627663051238922.webp" alt="Mac Excite"><div class="cap">Mac Excite</div><a href="#" tabindex="-1" aria-disabled="true" class="play-now">Play Now</a></div>
+      <div class="provider-card"><img src="assets/17627663112654279.webp" alt="Creed"><div class="cap">Creed</div><a href="#" tabindex="-1" aria-disabled="true" class="play-now">Play Now</a></div>
+      <div class="provider-card"><img src="assets/17627663175556145.webp" alt="Ezugi Gaming"><div class="cap">Ezugi Gaming</div><a href="#" tabindex="-1" aria-disabled="true" class="play-now">Play Now</a></div>
+      <div class="provider-card"><img src="assets/17627663245550016.webp" alt="Smartsoft"><div class="cap">Smartsoft</div><a href="#" tabindex="-1" aria-disabled="true" class="play-now">Play Now</a></div>
+      <div class="provider-card"><img src="assets/17627663313904439.webp" alt="Turbogames"><div class="cap">Turbogames</div><a href="#" tabindex="-1" aria-disabled="true" class="play-now">Play Now</a></div>
+      <div class="provider-card"><img src="assets/17627663374119771.webp" alt="Spribe"><div class="cap">Spribe</div><a href="#" tabindex="-1" aria-disabled="true" class="play-now">Play Now</a></div>
+      <div class="provider-card"><img src="assets/17838973794172307.png" alt="Insta Live"><div class="cap">Insta Live</div><a href="#" tabindex="-1" aria-disabled="true" class="play-now">Play Now</a></div>
+      <div class="provider-card"><img src="assets/17627663501920728.webp" alt="Evolution"><div class="cap">Evolution</div><a href="#" tabindex="-1" aria-disabled="true" class="play-now">Play Now</a></div>
+      <div class="provider-card"><img src="assets/17627663563742421.webp" alt="Jili"><div class="cap">Jili</div><a href="#" tabindex="-1" aria-disabled="true" class="play-now">Play Now</a></div>
+      <div class="provider-card"><img src="assets/17838973897402199.png" alt="Macsexy"><div class="cap">Macsexy</div><a href="#" tabindex="-1" aria-disabled="true" class="play-now">Play Now</a></div>
+      <div class="provider-card"><img src="assets/17627663828643584.webp" alt="Gamzix"><div class="cap">Gamzix</div><a href="#" tabindex="-1" aria-disabled="true" class="play-now">Play Now</a></div>
+      <div class="provider-card"><img src="assets/17840351213148965.png" alt="King Midas"><div class="cap">King Midas</div><a href="#" tabindex="-1" aria-disabled="true" class="play-now">Play Now</a></div>
+      <div class="provider-card"><img src="assets/17816910093163264.png" alt="All"><div class="cap">All</div><a href="#" tabindex="-1" aria-disabled="true" class="play-now">Play Now</a></div>
+      <div class="provider-card"><img src="assets/17627664019272821.webp" alt="Betgames"><div class="cap">Betgames</div><a href="#" tabindex="-1" aria-disabled="true" class="play-now">Play Now</a></div>
+      <div class="provider-card"><img src="assets/17627664088880263.webp" alt="Popok"><div class="cap">Popok</div><a href="#" tabindex="-1" aria-disabled="true" class="play-now">Play Now</a></div>
+      <div class="provider-card"><img src="assets/17627664147565517.webp" alt="Bikini Games"><div class="cap">Bikini Games</div><a href="#" tabindex="-1" aria-disabled="true" class="play-now">Play Now</a></div>
+    </div>
+  </section>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-license">
+      <img class="gc" src="assets/gc.png" alt="GC">
+      <img class="lice" src="assets/lice.png" alt="Licenses">
+      <p>Laser247 is the trading name of Sports Target B.V., a company incorporated and regulated in Curaçao under company number 148053 with it's registered office at Fransche Bloemweg 4, Willemstad, Curaçao.</p>
+    </div>
+    <p class="footer-note">Our website works best in the newest and last prior version of these browsers: Google Chrome, Firefox</p>
+    <ul class="footer-links">
+      <li><a href="#" tabindex="-1" aria-disabled="true">Privacy Policy</a></li>
+      <li><a href="#" tabindex="-1" aria-disabled="true">Terms And Conditions</a></li>
+      <li><a href="#" tabindex="-1" aria-disabled="true">Rules And Regulations</a></li>
+      <li><a href="#" tabindex="-1" aria-disabled="true">About Us</a></li>
+      <li><a href="#" tabindex="-1" aria-disabled="true">Responsible Gaming</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- ===== Mobile bottom navigation ===== -->
+<nav class="mobile-footer-menu" aria-label="Mobile primary">
+  <ul>
+    <li><a href="#" tabindex="-1" aria-disabled="true"><img src="assets/trophy.svg" alt="">Sports</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true"><img src="assets/timer.svg" alt="">In-Play</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true"><img src="assets/home.svg" alt="">Home</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true"><img src="assets/pin-white-footer.svg" alt="">Multi Market</a></li>
+    <li><a href="#" tabindex="-1" aria-disabled="true"><img src="assets/user.svg" alt="">Account</a></li>
+  </ul>
+</nav>
+
+</body>
+</html>
