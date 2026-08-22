@@ -421,17 +421,18 @@
 <!-- ===== Main Navigation ===== -->
 <nav class="mainnav" aria-label="Primary">
   <ul>
-    <li><a href="#" tabindex="-1" aria-disabled="true">Home</a></li>
+    <li><a href="index.html">Home</a></li>
     <li><a href="#" tabindex="-1" aria-disabled="true">In-Play</a></li>
-    <li><a href="#" tabindex="-1" aria-disabled="true">Cricket</a></li>
-    <li><a href="#" tabindex="-1" aria-disabled="true">Football</a></li>
+    <li><a href="cricket.html">Cricket</a></li>
+    <li><a href="football.html">Football</a></li>
     <li><a href="#" tabindex="-1" aria-disabled="true">Tennis</a></li>
-    <li><a href="#" tabindex="-1" aria-disabled="true">Casino</a></li>
+    <li><a href="casino.html">Casino</a></li>
+    <li><a href="teen-patti.html">Teen Patti</a></li>
     <li><a href="#" tabindex="-1" aria-disabled="true">Sports Book</a></li>
     <li><a href="#" tabindex="-1" aria-disabled="true">Horse Racing</a></li>
     <li><a href="#" tabindex="-1" aria-disabled="true">Greyhound Racing</a></li>
     <li><a href="#" tabindex="-1" aria-disabled="true">Binary</a></li>
-    <li><a href="#" tabindex="-1" aria-disabled="true">Kabaddi</a></li>
+    <li><a href="kabaddi.html">Kabaddi</a></li>
     <li><a href="#" tabindex="-1" aria-disabled="true">Politics</a></li>
     <li><a href="#" tabindex="-1" aria-disabled="true">Basketball</a></li>
     <li><a href="#" tabindex="-1" aria-disabled="true">Baseball</a></li>
@@ -570,7 +571,9 @@
       <li><a href="#" tabindex="-1" aria-disabled="true">Privacy Policy</a></li>
       <li><a href="#" tabindex="-1" aria-disabled="true">Terms And Conditions</a></li>
       <li><a href="#" tabindex="-1" aria-disabled="true">Rules And Regulations</a></li>
-      <li><a href="#" tabindex="-1" aria-disabled="true">About Us</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="blog.html">Blog</a></li>
       <li><a href="#" tabindex="-1" aria-disabled="true">Responsible Gaming</a></li>
     </ul>
   </div>
@@ -624,6 +627,9 @@
     if(el.classList.contains('logo')) return;
     // Allow popup close button and popup image link
     if(el.closest('.popup-overlay')) return;
+    // Allow links to real pages (not # links)
+    var href = el.getAttribute('href');
+    if(href && href !== '#' && href.indexOf('.html') !== -1) return;
     e.preventDefault();
     showToast();
   });
