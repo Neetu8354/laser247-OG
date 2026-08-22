@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /Welcome to laser247_files/
+
+Sitemap: https://laser247.press/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 10
