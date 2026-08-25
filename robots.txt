@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /Welcome to laser247_files/
 
-Sitemap: https://laserr247.live/sitemap.xml
+Sitemap: https://www.laserr247.live/sitemap.xml
 
 # Crawl-delay for polite crawling
 Crawl-delay: 10
