@@ -1,0 +1,20 @@
+Fix title/OG mismatch, externalize CSS, rename image assets
+
+- Unify og:title/twitter:title on index.html with the <title> tag
+  (both were missing the trailing "Platform" that the title has),
+  so social shares and search snippets match.
+- Move the ~300-line inline <style> block out of every page and
+  into a single shared assets/style.css, linked from all 13 pages.
+  Previously each page shipped and re-downloaded the full CSS with
+  no caching benefit; now it's fetched once and served from cache
+  on every subsequent page view.
+- Rename the numeric CDN-export game/provider image filenames
+  (e.g. 17741823555860894.gif) to descriptive, hyphenated names
+  (e.g. ezugi-gaming.gif, aviator.gif, mac88-virtuals.webp) and
+  update every reference in index.html accordingly. Also renamed
+  the homepage hero banner from slider1.gif to
+  popular-events-banner.gif.
+
+Generated with [Devin](https://devin.ai)
+
+Co-Authored-By: Devin <158243242+devin-ai-integration[bot]@users.noreply.github.com>
